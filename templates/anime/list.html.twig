@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Animes{% endblock %}
+
+{% block body %}
+    <h1>Liste des Animes</h1>
+
+    {% if pagination.items is empty %}
+        <p>Aucun anime pour le moment.</p>
+    {% else %}
+        <ul>
+            {% for anime in pagination.items %}
+                <li>
+                    <strong>{{ anime.title }}</strong> ({{ anime.releaseYear }})
+                </li>
+            {% endfor %}
+        </ul>
+
+        <div class="pagination">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+    {% endif %}
+{% endblock %}
