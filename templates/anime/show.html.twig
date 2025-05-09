@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ anime.title }}{% endblock %}
+
+{% block body %}
+    <div class="bg-white shadow-md rounded p-6 mb-4">
+        <h1 class="text-3xl font-bold mb-4">{{ anime.title }}</h1>
+
+        <p class="text-gray-700"><strong>Année de sortie :</strong> {{ anime.releaseYear }}</p>
+        
+        {% if anime.synopsis %}
+            <p class="mt-2"><strong>Synopsis :</strong> {{ anime.synopsis }}</p>
+        {% endif %}
+
+        <p class="mt-2"><strong>Épisodes :</strong> {{ anime.episodeCount ?? 'N/A' }}</p>
+        <p class="mt-2"><strong>Durée par épisode :</strong> {{ anime.durationPerEpisode ?? 'N/A' }} min</p>
+
+        {% if anime.studio %}
+            <p class="mt-2"><strong>Studio :</strong> {{ anime.studio.name }}</p>
+        {% endif %}
+
+        {% if anime.genres is not empty %}
+            <p class="mt-2"><strong>Genres :</strong> {{ anime.genres|map(g => g.name)|join(', ') }}</p>
+        {% endif %}
+
+        {% if anime.directors is not empty %}
+            <p class="mt-2"><strong>Directeurs :</strong> {{ anime.directors|map(d => d.name)|join(', ') }}</p>
+        {% endif %}
+
+        {% if anime.characters is not empty %}
+            <p class="mt-2"><strong>Personnages :</strong> {{ anime.characters|map(c => c.name)|join(', ') }}</p>
+        {% endif %}
+
+        <a href="{{ path('anime_list') }}" class="inline-block mt-5 bg-gray-500 text-white px-3 py-1 rounded">
+            Retour à la liste
+        </a>
+    </div>
+{% endblock %}

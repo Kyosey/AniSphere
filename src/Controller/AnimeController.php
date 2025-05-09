@@ -8,6 +8,7 @@ use App\Repository\AnimeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -36,7 +37,7 @@ class AnimeController extends AbstractController
         ]);
     }
 
-    #[Route('/anime/new')] 
+    #[Route('/anime/new', name: 'anime_new')] 
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $anime = new Anime();
@@ -55,6 +56,18 @@ class AnimeController extends AbstractController
 
         return $this->render('anime/new.html.twig', [
             'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/anime/{id}', name: 'anime_show')]
+    public function show(Anime $anime): Response
+    {
+        if (!$anime) {
+            throw new NotFoundHttpException('Cet anime n\'existe pas.');
+        }
+
+        return $this->render('anime/show.html.twig', [
+            'anime' => $anime,
         ]);
     }
 }
