@@ -42,9 +42,9 @@ final class AnimeFactory extends PersistentProxyObjectFactory
             'episodeCount' => self::faker()->numberBetween(12, 100),
             'durationPerEpisode' => self::faker()->numberBetween(20, 30),
             'studio' => StudioFactory::new(),
-            'directors' => DirectorFactory::new()->many(1, 2),
-            'characters' => CharacterFactory::new()->many(2, 5),
-            'genres' => GenreFactory::new()->many(1, 3),
+            'directors' => DirectorFactory::new()->many(self::faker()->numberBetween(1, 2)),
+            'characters' => CharacterFactory::new()->many(self::faker()->numberBetween(2, 5)),
+            'genres' => GenreFactory::new()->many(self::faker()->numberBetween(1, 3)),
         ];
     }
 

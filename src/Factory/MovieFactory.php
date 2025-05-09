@@ -41,9 +41,9 @@ final class MovieFactory extends PersistentProxyObjectFactory
             'synopsis' => self::faker()->paragraph(),
             'duration' => self::faker()->numberBetween(60, 130),
             'studio' => StudioFactory::new(),
-            'directors' => DirectorFactory::new()->many(1, 2),
-            'characters' => CharacterFactory::new()->many(2, 5),
-            'genres' => GenreFactory::new()->many(1, 3),
+            'directors' => DirectorFactory::new()->many(self::faker()->numberBetween(1, 2)),
+            'characters' => CharacterFactory::new()->many(self::faker()->numberBetween(2, 5)),
+            'genres' => GenreFactory::new()->many(self::faker()->numberBetween(1, 3)),
         ];
     }
 
