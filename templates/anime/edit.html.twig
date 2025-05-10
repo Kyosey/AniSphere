@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ajouter un nouvel anime{% endblock %}
+{% block title %}Modifier l'anime - {{ anime.title }}{% endblock %}
 
 {% block body %}
-    <h1 class="text-2xl font-bold mb-5 px-6">Ajouter un nouvel anime</h1>
+    <h1 class="text-2xl font-bold mb-5 px-6">Modifier l'anime : {{ anime.title }}</h1>
 
     {% for message in app.flashes('success') %}
         <div class="bg-green-500 text-white p-2 mb-4 rounded">
@@ -68,10 +68,14 @@
             {{ form_errors(form.genres) }}
         </div>
 
-        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-            Enregistrer l'anime
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-3">
+            Mettre à jour l'anime
         </button>
 
         {{ form_end(form) }}
     </div>
+
+    <a href="{{ path('anime_show', { id: anime.id }) }}" class="inline-block mt-4 bg-gray-500 text-white px-3 py-1 rounded">
+        Retour à la fiche
+    </a>
 {% endblock %}
