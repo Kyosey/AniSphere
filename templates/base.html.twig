@@ -11,9 +11,34 @@
       {{ encore_entry_link_tags('app') }}
     {% endblock %}
 </head>
-<body>
-    <div class="container mx-auto p-5">
+<body class="bg-gray-100 text-gray-800">
+    <nav class="bg-[#031d33] text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="text-xl font-bold">
+                <a href="{{ path('home') }}" class="hover:text-gray-200">AniSphere</a>
+            </div>
+            <div class="flex space-x-4">
+                <a href="{{ path('anime_list') }}" class="hover:text-gray-200">Animes</a>
+                <a href="#" class="hover:text-gray-200">Films</a>
+            </div>
+            <div>
+              <a href="{{ path('anime_new') }}" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded">
+                Ajouter un Anime
+              </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto">
         {% block body %}{% endblock %}
-    </div>
+    </main>
+
+    <footer class="bg-radial from-[#031d33] to-[#031d33] text-white py-[50px] mt-10">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2025 AniSphere - Tous droits réservés.</p>
+            <p>Développé avec ❤️ par Alexis Chaignon</p>
+        </div>
+    </footer>
+
 </body>
 </html>
