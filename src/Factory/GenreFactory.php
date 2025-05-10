@@ -32,8 +32,23 @@ final class GenreFactory extends PersistentProxyObjectFactory
     protected function defaults(): array|callable
     {
         return [
-            'name' => self::faker()->randomElement([
-                'Shonen', 'Seinen', 'Shojo', 'Mecha', 'Isekai', 'Fantasy', 'Slice of Life', 'Horror'
+            'name' => self::faker()->unique()->randomElement([
+                'Action',
+                'Adventure',
+                'Fantasy',
+                'Horror',
+                'Isekai',
+                'Mecha',
+                'Romance',
+                'Science-Fiction',
+                'Slice of Life',
+                'Sports',
+                'Thriller',
+                'Mystery',
+                'Psychological',
+                'Supernatural',
+                'Ecchi',
+                'Mecha'
             ]),
         ];
     }
