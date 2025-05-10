@@ -46,6 +46,8 @@ class AnimeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $anime->setImage('https://picsum.photos/seed/' . uniqid() . '/600/400');
+
             $entityManager->persist($anime);
             $entityManager->flush();
 
@@ -68,6 +70,26 @@ class AnimeController extends AbstractController
 
         return $this->render('anime/show.html.twig', [
             'anime' => $anime,
+        ]);
+    }
+
+    #[Route('/anime/{id}/edit', name: 'anime_edit')]
+    public function edit(Anime $anime, Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(AnimeType::class, $anime);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+            $this->addFlash('success', 'L\'anime a été mis à jour avec succès !');
+
+            return $this->redirectToRoute('anime_show', ['id' => $anime->getId()]);
+        }
+
+        return $this->render('anime/edit.html.twig', [
+            'form' => $form->createView(),
+            'anime' => $anime
         ]);
     }
 }

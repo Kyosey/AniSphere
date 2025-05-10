@@ -45,6 +45,7 @@ final class AnimeFactory extends PersistentProxyObjectFactory
             'directors' => DirectorFactory::new()->many(self::faker()->numberBetween(1, 2)),
             'characters' => CharacterFactory::new()->many(self::faker()->numberBetween(2, 5)),
             'genres' => GenreFactory::new()->many(self::faker()->numberBetween(1, 3)),
+            'image' => 'https://picsum.photos/seed/' . self::faker()->unique()->word() . '/600/400',
         ];
     }
 
