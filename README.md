@@ -20,10 +20,14 @@ npm run build
 
 # Configurer la base de données
 php bin/console doctrine:database:create
+php bin/console doctrine:schema:create
 php bin/console doctrine:migrations:migrate
 
 # Charger les données initiales
 php bin/console doctrine:fixtures:load
+
+# Lancer le serveur avec Docker
+docker compose up -d
 
 # Lancer le serveur Symfony & le front
 symfony server:start
